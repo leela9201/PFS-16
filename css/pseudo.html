@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div::before{
+        content:"*";
+    }
+    div::after{
+        content: "leela";
+    }
+    div::first-letter{
+        color: blue;
+    }
+    div::selection{
+        color: chartreuse;
+    }
+    div {
+        border: 5px double red;
+        border-top-right-radius: 5px;
+        box-shadow: 5px 5px -5px -5px rosybrown;
+    }
+</style>
+<body>
+    <div>leela</div>
+    <div>kumari</div>
+</body>
+</html>
