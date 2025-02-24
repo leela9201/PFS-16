@@ -16,12 +16,7 @@
       <link rel="icon" type="image/jpeg" href="https://www.soultravelling.in/system/images/000/278/749/c55d4801f23344a9e4f0d10d2c448e6b/favicon/Artboard_1_copy_1x.jpg?1702312903">
 
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
 
 
     <!-- Open Graph Tags -->
@@ -33,145 +28,6 @@
     <meta property="og:image" content="https://www.soultravelling.in/system/images/000/738/074/831a327a2725dc517e6e4cbdbaeaa292/banner/CR__214_.jpg?1706177641">
     <meta property="og:image:width" content="2160">
     <meta property="og:image:height" content="1440">
-
-    
-
-
-    <script>
-  loadjs=function(){var h=function(){},c={},u={},f={};function o(e,n){if(e){var r=f[e];if(u[e]=n,r)for(;r.length;)r[0](e,n),r.splice(0,1)}}function l(e,n){e.call&&(e={success:e}),n.length?(e.error||h)(n):(e.success||h)(e)}function d(r,t,s,i){var c,o,e=document,n=s.async,u=(s.numRetries||0)+1,f=s.before||h,l=r.replace(/[\?|#].*$/,""),a=r.replace(/^(css|img)!/,"");i=i||0,/(^css!|\.css$)/.test(l)?((o=e.createElement("link")).rel="stylesheet",o.href=a,(c="hideFocus"in o)&&o.relList&&(c=0,o.rel="preload",o.as="style")):/(^img!|\.(png|gif|jpg|svg|webp)$)/.test(l)?(o=e.createElement("img")).src=a:((o=e.createElement("script")).src=r,o.async=void 0===n||n),!(o.onload=o.onerror=o.onbeforeload=function(e){var n=e.type[0];if(c)try{o.sheet.cssText.length||(n="e")}catch(e){18!=e.code&&(n="e")}if("e"==n){if((i+=1)<u)return d(r,t,s,i)}else if("preload"==o.rel&&"style"==o.as)return o.rel="stylesheet";t(r,n,e.defaultPrevented)})!==f(r,o)&&e.head.appendChild(o)}function r(e,n,r){var t,s;if(n&&n.trim&&(t=n),s=(t?r:n)||{},t){if(t in c)throw"LoadJS";c[t]=!0}function i(n,r){!function(e,t,n){var r,s,i=(e=e.push?e:[e]).length,c=i,o=[];for(r=function(e,n,r){if("e"==n&&o.push(e),"b"==n){if(!r)return;o.push(e)}--i||t(o)},s=0;s<c;s++)d(e[s],r,n)}(e,function(e){l(s,e),n&&l({success:n,error:r},e),o(t,e)},s)}if(s.returnPromise)return new Promise(i);i()}return r.ready=function(e,n){return function(e,r){e=e.push?e:[e];var n,t,s,i=[],c=e.length,o=c;for(n=function(e,n){n.length&&i.push(e),--o||r(i)};c--;)t=e[c],(s=u[t])?n(t,s):(f[t]=f[t]||[]).push(n)}(e,function(e){l(n,e)}),r},r.done=function(e){o(e,[])},r.reset=function(){c={},u={},f={}},r.isDefined=function(e){return e in c},r}();
-</script>
-
-<!-- 
-  Initialising global data structures and VL.jquery_on_load to register functions that will be called
-  when jQuery is loaded by the browser.
--->
-<script type="text/javascript">
-  window.VL = window.VL || {};
-  window.VL.jquery_on_load_callbacks = window.VL.jquery_on_load_callbacks || [];
-  window.VL.trap_errors = function(msg, fn) {
-    return function() {
-      try {
-        fn();
-      } catch (e) {
-        console.log(msg, e);
-      }
-    }
-  }
-
-  window.VL.with_timeout = function(fn) {
-    if(window.location.search.indexOf('timeout')==-1) {
-      return fn;
-    } else {
-      return function() {
-        setTimeout(fn);
-      }
-    }        
-  };
-
-  window.VL.jquery_on_load = function(msg, fn) {
-    window.VL.jquery_on_load_callbacks.push(window.VL.trap_errors(msg, fn));
-  }
-  window.VL.window_on_load = function(msg, fn) {
-    window.VL.jquery_on_load_callbacks.push(function() {
-      $(window).on('load', window.VL.trap_errors(msg, fn));  
-    });
-  }
-  window.VL.document_on_ready = function(msg, fn) {
-    window.VL.jquery_on_load_callbacks.push(function() {
-      $(document).on('ready', window.VL.trap_errors(msg, fn));
-    });
-  }
-
-  window.VL.trap_errors = function(msg, fn) {
-    try {
-      fn();
-    } catch(e) {
-      console.log('error in ' + msg, e);
-    }
-  }
-
-  window.VL.init_on_ready = function(msg, fn) {
-    loadjs.ready('jquery', function() {
-      $(document).ready(function() {
-        setTimeout(function() {
-          console.log('init', msg);
-          window.VL.trap_errors(msg, fn);
-        });
-      });      
-    });
-  }
-
-  window.VL.createIntersectionObserver = function(elements, fn) {
-    var io = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(e) {
-        if(e.isIntersecting) {
-          observer.unobserve(e.target);
-          fn(e.target);
-        }
-      });
-    });
-
-    var arr = elements.selector ? elements.toArray() : elements;
-    arr.forEach(function(e) {
-      io.observe(e);
-    });
-    return io;
-  }
-
-  window.VL.i18n_t = function() {
-    var k = arguments[0];
-    var default_text = 'missing: ' + k;
-    var lang = VL.language || 'en';
-    if(_.isObject(arguments[1])) {
-      default_text = arguments[1].default_text || default_text;
-      lang = arguments[1].language || lang;
-    } 
-
-    if (_.isString(arguments[1])) {
-      default_text = arguments[1] || default_text;
-    }
-
-    if(_.isString(arguments[2])) {
-      lang = arguments[2] || lang;
-    }
-
-    return (VL.translations[lang][k] || default_text);  
-  }
-
-  window.VL.mobile_breakpoint = 768;
-
-  window.VL.loadRemoteHtml = async function(url, el) {
-    try {
-      const resp = await fetch(url, { method: 'GET', headers: { 'Accept' : 'text/html' }});
-      if(resp.ok) {
-        const html = await resp.text();
-        el.innerHTML = html;
-      } else {
-        console.log('Error while loading remote HTML. Non-200 response', url, resp);  
-      }
-    } catch(e) {
-      console.log('Error in loading remote HTML', url, e);
-    }
-  }
-
-  window.ASSAN = window.ASSAN || {};
-</script>
-
-    
-<script type="text/javascript">
-  window.VL = window.VL || {};
-  window.VL.language = "en";
-  window.VL.translations = window.VL.translations || {};
-  window.VL.translations['en'] = {"common.store_front.themes.flexi_theme.partials.trip_card_layout_v5.read_more":"read more","common.store_front.themes.flexi_theme.partials.trip_card_layout_v5.read_less":"read less","itinerary.store_front.bookings.booking_confirmation.fix_the_errors_message":"Please fix the errors marked in red to continue","itinerary.store_front.bookings.post_booking_form_step.fix_the_errors_message":"Please fix the errors marked in red to continue","common.store_front.themes.flexi_theme.partials.currency_tooptip_text":"Works out to about","common.store_front.themes.flexi_theme.search.collections":"Collections","common.store_front.themes.flexi_theme.search.pages":"Pages","common.store_front.themes.flexi_theme.search.trips":"Trips","common.store_front.themes.flexi_theme.search.advanced_search":"Advanced Search","common.store_front.themes.flexi_theme.search.advanced_search_result_desc":"Can't find what you're looking for? Search using our various filter options.","common.store_front.themes.flexi_theme.search.starting_from_text":"Starting from","common.store_front.themes.flexi_theme.search.tours":"Tours","itinerary.store_front.booking_calendar.available":"Available","itinerary.store_front.booking_calendar.filling_fast":"Filling Fast","itinerary.store_front.booking_calendar.sold_out":"Sold Out","itinerary.store_front.booking_calendar.not_operating":"Not Operating","itinerary.store_front.bookings.custom_form.errors.required":"This is a required field","common.store_front.themes.all.currency_picker_text":"Change currency","itinerary.store_front.generic_loading_message":"Loading...","itinerary.store_front.bookings.custom_form.fields.date_of_birth.placeholders.year":"year","itinerary.store_front.bookings.custom_form.fields.date_of_birth.placeholders.month":"month","itinerary.store_front.bookings.custom_form.fields.date_of_birth.placeholders.day":"day","itinerary.store_front.bookings.labels.button_submitted":"Hang on...","itinerary.store_front.bookings.departure_date_step.fetching_dates_flash_message":"Fetching available dates & options...","itinerary.store_front.bookings.booking_item_step.calculating_price_flash_message":"Calculating total price...","itinerary.store_front.bookings.pax_details_step.form_submitted_flash_message":"Saving participant details...","itinerary.store_front.bookings.pax_details_step.fetching_booking_details_flash_message":"Fetching booking details...","itinerary.store_front.bookings.departure_date_step.fetching_booking_form_flash_message":"Fetching booking form...","common.store_front.themes.flexi_theme.search.no_matches_found":"No matches found","global_strings.booking.person_titles":["Mr","Mrs","Miss","Mstr"],"itinerary.store_front.bookings.custom_form.fields.full_name.first_name.placeholder":"First name","itinerary.store_front.bookings.custom_form.fields.full_name.last_name.placeholder":"Last name","common.store_front.themes.flexi_theme.contact_us.contact_form.thank_msg":"Thank you for reaching out to us.  Your message has been submitted successfully","common.store_front.themes.flexi_theme.contact_us.contact_form.sending_email":"Sending your email","date.formats.short_with_year":"dd M, yy"};
-  window.VL.AppSettings = {"google_analytics_tracking_id":"UA-30889614-2","google_browser_apikey":"AIzaSyAGHUBpsnQpCdzltj5NSNuhLJPBhWgI1x8","sample_website_polling":{"max_attempts":150,"interval":3000}};
-</script>
-
-
-
-    <!-- Client stylesheet and header script -->
-    
-
-
 
     <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/common/store_front/themes/flexi_theme/style-3a34f84867e9aeea7effacefb693c983.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -187,23 +43,11 @@
   
   <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/global-storefront-search-76bdf2e8ae06bf6b83d814044841a200.css" media="print" onload="this.media='all'" rel="stylesheet" type="text/css" />
 
-  
-
-
-    
-
   <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-banner-86435acade9f2b1c7989852610473041.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-banner-slide-98cb3cf7a6c34e4c3409bb1ff8505473.css" media="screen" rel="stylesheet" type="text/css" />
 
     <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/vendor/owl.combined-62a03d4d6d6bd600dc64a3d7962793bf.css" media="screen" rel="stylesheet" type="text/css" />
-    <script>
-      loadjs.ready('jquery', function() {
-        loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/owl_carousel-293dbeb5349a6e3a412f5437c17ab972.js"], 'owl_carousel', {"async":true});
-      });
-    </script>
-
-  
-
+    
   <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-description-f80f1762789b0d91f7b4a365e89ad5b6.css" media="screen" rel="stylesheet" type="text/css" />
 
     <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-team-member-accordion-f8d3de078dafbb7d752a19bea56d4149.css" media="print" onload="this.media='all'" rel="stylesheet" type="text/css" />    
@@ -214,141 +58,13 @@
 
   <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/collection-page/collection-card-semi-overlay-83d54452565d90f531c8b60cc67d16b7.css" media="print" onload="this.media='all'" rel="stylesheet" type="text/css" />
 
+<link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-testimonial-7639e6b98c9047d9c6cfaf0fa48f1bfa.css" media="print" onload="this.media='all'" rel="stylesheet" type="text/css" />
 
-
-
-  <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-testimonial-7639e6b98c9047d9c6cfaf0fa48f1bfa.css" media="print" onload="this.media='all'" rel="stylesheet" type="text/css" />
-
-
-  <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-accreditations-095053567098eb4d0b4e68f1ba795490.css" media="print" onload="this.media='all'" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-    <script>
-  loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/jquery-6a048ab31e0ef84e62e34cdf63b9b0d0.js"], 'jquery', {"async":true});      
-  loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/underscore-b9f266a792a25b8f3a33389c9a007bbe.js"], 'underscore', {"async":true});
-  loadjs.ready('jquery', function() {
-    loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/responsive_helper-fc52c1cce118b80c07ef55c4a8cf3251.js"], 'responsive_helper', {"async":true});
-    
-
-      loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/slick-29fb6dc3c40f34ca2939c5e700884783.js"], 'slick', {"async":true});
-      loadjs(["css!https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/slick-991e3a797253228cbc9d2d9708cd7e21.css"], 'slick_css', {"async":true});
-    
-    loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/classOnScroll-f2909165d825eb92de644bc245ae1c00.js"], 'class_on_scroll', {"async":true});
-
-    loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/accordion-7532d2dfbcce15374e72d7000a20e288.js"], 'accordion', {"async":true});
-
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/transition-0363fd9c265e4da5bd48704794e8ab66.js"], 'bootstrap3_transition', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/alert-817a612822f8b83fab849b8fcb408a90.js"], 'bootstrap3_alert', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/button-5ea3e64cc1749bbc9e900d1ae599d401.js"], 'bootstrap3_button', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/collapse-217f0612b7c860ef2ad71846a0e62278.js"], 'bootstrap3_collapse', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/dropdown-6327c57e9906a7cf90f668ffd1bd68b8.js"], 'bootstrap3_dropdown', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/modal-65690fae55aac1373a5c89e8d3d8a52f.js"], 'bootstrap3_modal', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/tooltip-8fea06ae2aebdf6c436829488f616a6f.js"], 'bootstrap3_tooltip', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/tab-512d28e0368d0068e9ed0842513b269a.js"], 'bootstrap3_tab', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/affix-f8e6ac99161b4b955487187a2c8da018.js"], 'bootstrap3_affix', {"async":true});
-
-      loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/trunk8-f20ea1805a3a7f5673608745728b892f.js","https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/jquery.dotdotdot.min-1683e5453d040ae29f48bb1792dd5bdd.js"], 'truncate_text_deps', {"async":true}); 
-      loadjs.ready('truncate_text_deps', function() {
-        loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/truncate_text-9c5beaa4d1263d74cbfdd4ffe740b68e.js"], 'truncate_text', {"async":true});  
-      });
-
-      loadjs(["css!https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/autocomplete-905b4827cca588d4cd9fa69a595a44aa.css"], 'autocomplete_css', {"async":true});
-      loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/jquery_deparam-8b3cec7d6f65f8011eb1e8ca5f992320.js"], 'jquery_deparam', {"async":true});
-      loadjs.ready(['jquery', 'underscore', 'jquery_deparam'], function() {
-        loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/search-9a8fc38b3e9ba67924808ce44aa2d034.js"], 'search', {"async":true});  
-      });
-
-
-      window.VL.search_suggestions = [];
-
-
-
-  });
-  
-  loadjs.ready('bootstrap3_tooltip', function() {
-
-    loadjs(["https://www.soultravelling.in/assets/twitter/bootstrap3/popover-e6f727fd46798d66dd2d3ea445e8e28c.js"], 'bootstrap3_popover', {"async":true});
-  });
-
-  loadjs.ready(['jquery', 'underscore', 'responsive_helper'], function() {
-    loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/main-0f1c4e35be3f5540a0a5928cc60d268a.js"], 'main', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/mobile_nav-567891c69b3486203a74c94eb27e111f.js"], 'mobile_nav', {"async":true});
-    loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/jquery_accordion-422b51318e8f6eb50e83160bc3198f07.js"], 'jquery_accordion', {"async":true});
-  });
-  loadjs.ready(['jquery', 'bootstrap3_popover', 'class_on_scroll'], function() {
-    loadjs(["https://www.soultravelling.in/assets/common/store_front/themes/flexi_theme/phone_number-21b59e49b1566582826c0fe602a87b54.js"], 'phone_number', {"async":true});
-  });
-
-  
-</script>
-
-
+<link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/section-accreditations-095053567098eb4d0b4e68f1ba795490.css" media="print" onload="this.media='all'" rel="stylesheet" type="text/css" />
 
 <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/segmented-search-e60bea5790fc23b6922d937c3743401f.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="https://vl-prod-static.b-cdn.net/prod/css-roller/flexi-theme/page-home-ea3c60075e9a52d818ade3126ee9282e.css" media="screen" rel="stylesheet" type="text/css" />
 
-
-
-    <script>
-
-window.addEventListener('load', function() {
-  var tripSlider = $(".tour-carousel");
-  tripSlider.slick('unslick');
-});
-</script>
-<script type="application/ld+json"> 
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Soul Travelling",
-  "url": "https://www.soultravelling.in/",
-  "logo": "https://vl-prod-static.b-cdn.net/system/images/000/738/077/b265a8eb4dc70de937e009e88ea77215/225gt/logo-final-white_1_.png?1706629493",
-  "image": "https://vl-prod-static.b-cdn.net/system/images/000/738/852/52bc1a9eca4e58bf646750a5c202e210/1320gt/1__1_.jpeg?1706847866",
-  "description": "Soul Travelling offers unique travel experiences in Goa, focusing on heritage walks, local culture, and offbeat explorations.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "first floor, Gogol Vista, above Caro Central",
-    "addressLocality": "Margao",
-    "addressRegion": "Goa",
-    "postalCode": "403602",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 15.2993,
-    "longitude": 74.1240
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+919529490245",
-    "contactType": "Customer Service"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-    ],
-    "opens": "10:00",
-    "closes": "20:00"
-  },
-  "sameAs": [
-    "https://www.facebook.com/untraced.paths",
-    "https://www.instagram.com/soul.travelling"
-  ]
-}
-
-</script>
 <style>
 
 .page-type-trip .section-type-banner .mobile-floating-container .trip-pricing{background-color:#282828;}
@@ -401,20 +117,6 @@ body#new-storefront-booking-form div[data-trip-id="75588"] .payment-details-sect
     filter: none !important;
 }
 </style>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSM7JGF9J6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RSM7JGF9J6');
-</script>
-
-  <!-- Insert your code here -->
-
-
 </head>
 <body id="" data-page-type="home" data-page="137033" class="container-fluid assan-container index_handler center-aligned-header-style header_center_aligned " data-spy="scroll" data-target=".sticky-menu" data-offset="150">
   <div class="body-wrapper">
